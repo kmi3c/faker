@@ -14,7 +14,7 @@ class TestFakerTwitter < Test::Unit::TestCase
   end
 
   def test_user_without_status
-    user = @tester.user(include_status: false)
+    user = @tester.user(false)
     assert user.is_a?(Hash)
     assert user.keys.count == 40
     assert_nil user[:status]
@@ -29,7 +29,7 @@ class TestFakerTwitter < Test::Unit::TestCase
   end
 
   def test_status_without_user
-    status = @tester.status(include_user: false)
+    status = @tester.status(false)
     assert status.is_a?(Hash)
     assert status.keys.count == 24
     assert_nil status[:user]

@@ -1,7 +1,7 @@
 module Faker
   class Twitter < Base
     class << self
-      def user(include_status: true)
+      def user(include_status = true)
         user_id = id
         background_image_url = Faker::LoremPixel.image('600x400') # TODO: Make the dimensions change
         profile_image_url = Faker::Avatar.image(user_id, '48x48')
@@ -47,11 +47,11 @@ module Faker
           follow_request_sent: false,
           notifications: false
         }
-        user[:status] = Faker::Twitter.status(include_user: false) if include_status
+        user[:status] = Faker::Twitter.status(false) if include_status
         user
       end
 
-      def status(include_user: true)
+      def status(include_user = true)
         status_id = id
         status = {
           created_at: created_at,
@@ -79,7 +79,7 @@ module Faker
           possibly_sensitive: Faker::Boolean.boolean(0.1),
           lang: Faker::Address.country_code
         }
-        status[:user] = Faker::Twitter.user(include_status: false) if include_user
+        status[:user] = Faker::Twitter.user(false) if include_user
         status
       end
 
